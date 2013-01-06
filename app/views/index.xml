@@ -1,0 +1,24 @@
+<Alloy>
+	<TabGroup>
+		<Tab title="Tab 1" icon="KS_nav_ui.png">
+			<Window title="Tab 1">
+				<Button title = "Buton1" top = '30' id = "Search" onClick = 'Search'>  Search   </Button>
+				<Label  >I am Window 1</Label>
+			</Window>
+		</Tab>
+		<Tab title="Tab 2" icon="KS_nav_views.png">
+			<Window title="Tab 2">
+				<Label id = "GetJson" >Waiting for JSON </Label>
+			</Window>
+		</Tab>
+	
+		<Tab title = "Map">
+			   <Window id="win">
+
+
+    </Window>
+	</Tab>
+	
+	
+	</TabGroup>
+</Alloy>
