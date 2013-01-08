@@ -1,5 +1,5 @@
 function aPro(table, data) {
-    var ImageA = Alloy.Globals.SCData[0].waveform_url + "";
+    alert(Alloy.Globals.SCData[0].waveform_url);
     Alloy.Globals.LeftButton.visible = !0;
     var RowNew = Titanium.UI.createTableViewRow({
         font: {

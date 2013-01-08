@@ -12,7 +12,7 @@
 
 Alloy.Globals.UIStuff ; 
 Alloy.Globals.Alerts = false ; 
-Alloy.Globals.SCData ; 
+Alloy.Globals.SCData = null ; 
 Alloy.Globals.LeftButton ; 
 Alloy.Globals.MainWin ; 
 Alloy.Globals.InfoButton ;

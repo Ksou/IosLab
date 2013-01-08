@@ -4,7 +4,7 @@ Alloy.Globals.UIStuff;
 
 Alloy.Globals.Alerts = !1;
 
-Alloy.Globals.SCData;
+Alloy.Globals.SCData = null;
 
 Alloy.Globals.LeftButton;
 

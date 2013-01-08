@@ -2,24 +2,25 @@
  * @author Keith Wilson
  */
 function aPro(table,data){
-	var ImageA = Alloy.Globals.SCData[0].waveform_url +"";
-	if(false){// not yet , futher research needed
+	//var ImageA = Alloy.Globals.SCData[0].waveform_url +"";
+	
+	alert(Alloy.Globals.SCData[0].waveform_url);
+	
+	if(  false &&  (Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad' )){// not yet , futher research needed
 		//Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad' ){
-	var ArtWork ;
-	for(var i = 0; i < Alloy.Globals.SCData.length; i++){
-		ArtWork[i] = Alloy.Globals.SCData[i].waveform_url;
+	var CoverFlow = Titanium.UI.iOS.createCoverFlowView();
+	
+	var ArtWork ; // Ti.UI.createView() ;
+	for(var i = 0; i < (Alloy.Globals.SCData.length /2) ; i++){
+		ArtWork[i] = Ti.UI.createView({ backgroundImage : Alloy.Globals.SCData[i].waveform_url }) ;
+		// Alloy.Globals.SCData[i].waveform_url;
+	
 	}
-var CoverFlow = Titanium.UI.createCoverFlowView({
-	
-	images : [ImageA]
-	
-	
-	//ArtWork 
-	
-});
+//var CoverFlow = Titanium.UI.createCoverFlowView();
+CoverFlow.add(ArtWork[0]);
+var SCView = 	Alloy.Globals.scFlow ;
+SCView.add(CoverFlow) ;
 
-	
-Alloy.Globals.scFlow.add(CoverFlow) ;
 }
 
 
