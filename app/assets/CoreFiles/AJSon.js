@@ -1,8 +1,9 @@
-function AJSon (trackL,dR){
+function AJSon (trackL,dataGot){
 //	alert(trackL);
 // dr stands for direct return 
+	if(Alloy.Globals.Alerts ){
 	alert('In AJSon');
-	
+}
 	if ( trackL == null){
 		alert('No Data ');
 		
@@ -10,23 +11,33 @@ function AJSon (trackL,dR){
 	//var trackL = 'piano';
 //var url = "https://www.appcelerator.com";
 var url =	'http://api.jamendo.com/get2/name+id+url+artist/track/json/?searchquery='+
-trackL+'=searchweight_desc';	
+Alloy.Globals.UIStuff[3].value+'=searchweight_desc';	
 
 var xhr = Ti.Network.createHTTPClient({
     onload: function(e) {
-        // this.responseText holds the raw text return of the message (used for JSON)
-        // this.responseXML holds any returned XML (used for SOAP web services)
-        // this.responseData holds any returned binary data
-    
-    	alert('We are in load ');
-        
+if(Alloy.Globals.Alerts  ){
+    	alert('We are in AJSon');
+     alert(this.responseText );
+       }
         Ti.API.debug(this.responseText);
         //alert('success');
-    	//alert(this.responseText );
+    	
     	var data = eval('('+ this.responseText +')');
-    	alert(this.responseText) ; 
-    	dR.text = this.responseText ; 
-
+    //	alert(this.responseText) ; 
+    //	Alloy.Globals.UIStuff = [TextH,Label1,Button1];
+    	//dR.text
+    	
+    	//Alloy.Globals.UIStuff[TextH].text  = this.responseText ; 
+		// fix this data to make it usable 
+		DataFix = require('CoreFiles/DataFix');
+		data =  DataFix(data,true);
+		var JoinData = data.concat(dataGot);
+			// make table local 
+		//var	table = Alloy.Globals.UIStuff[3] ; 
+			Alloy.Globals.UIStuff[3].data = JoinData ; 
+   		aPro = require ('CoreFiles/aPro');
+   		
+   		aPro(Alloy.Globals.UIStuff[3],JoinData);
     },
     onerror: function(e) {
         Ti.API.debug(e.error);

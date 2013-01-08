@@ -1,22 +1,52 @@
 <Alloy>
 	<TabGroup>
 		<Tab title="Tab 1" icon="KS_nav_ui.png">
-			<Window title="Tab 1">
+			<Window onOpen = "OnLoad" title="Tab 1" id = 'Main'>
+			<TableView id = "tableP"  visible = "false">
+			
+			</TableView>
 				<Button title = "Buton1" top = '30' id = "Search" onClick = 'Search'>  Search   </Button>
-				<Label  >I am Window 1</Label>
+				<Label top = "80" id = "AL"> Alert Switch  </Label> 
+				<Switch id="Alerts" value="false" onChange ="IosCheck" top = "120" title = 'Alert Switch' />
+				
+				<TextField id= 'Label1'  width = '60' hintText = " Search Here " >Search Here</TextField>
+			
+			
 			</Window>
 		</Tab>
 		<Tab title="Tab 2" icon="KS_nav_views.png">
 			<Window title="Tab 2">
+			 <ScrollableView id="scrollableView" showPagingControl="true" scrollingEnabled = "true"  width = "auto" height="auto" >
+			<!--<View id="view1" backgroundColor="gray">-->
 				<Label id = "GetJson" >Waiting for JSON </Label>
+			<!--</View>-->
+			 </ScrollableView>
 			</Window>
 		</Tab>
 	
-		<Tab title = "Map">
-			   <Window id="win">
-
-
-    </Window>
+		<Tab title = "SC CoverFlow">
+    <Window id="scFlow" backgroundColor="white">
+      
+      
+     
+      
+      <!--  <TableView id="Songs"> -->
+        	
+<!--            <TableViewSection id="sectionFruit" headerTitle="Fruit">
+                <TableViewRow title="Apple"/>
+                <TableViewRow title="Bananas"/>
+            </TableViewSection>
+            <TableViewSection id="sectionVeg" headerTitle="Vegetables">
+                <TableViewRow title="Carrots"/>
+                <TableViewRow title="Potatoes"/>
+            </TableViewSection>
+            <TableViewSection id="sectionFish" headerTitle="Fish">
+                <TableViewRow title="Cod"/>
+                <TableViewRow title="Haddock"/>
+            </TableViewSection> -->
+       
+      <!--  </TableView>-->
+	</Window>
 	</Tab>
 	
 	

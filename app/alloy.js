@@ -9,3 +9,13 @@
 // object. For example:
 //
 // Alloy.Globals.someGlobalFunction = function(){};
+
+Alloy.Globals.UIStuff ; 
+Alloy.Globals.Alerts = false ; 
+Alloy.Globals.SCData ; 
+Alloy.Globals.LeftButton ; 
+Alloy.Globals.MainWin ; 
+Alloy.Globals.InfoButton ;
+Alloy.Globals.scFlow ; 
+Alloy.Globals.Player ; 
+Alloy.Globals.StopButton ;

@@ -1,10 +1,55 @@
 function Controller() {
-    function OnLoad() {}
+    function OnLoad() {
+        Alloy.Globals.scFlow = $.scFlow;
+        var ButtonLeft = Ti.UI.createButton({
+            title: "Back"
+        }), StopButton = Ti.UI.createButton({
+            title: "Stop"
+        }), ButtonInfo = Ti.UI.createButton({
+            title: "Info"
+        }), WinM = $.Main;
+        ButtonLeft.addEventListener("click", Back);
+        ButtonInfo.addEventListener("click", function() {
+            alert("This is the main page, from here you can search for music");
+        });
+        Alloy.Globals.MainWin = WinM;
+        Alloy.Globals.LeftButton = ButtonLeft;
+        Alloy.Globals.InfoButton = ButtonInfo;
+        StopButton.addEventListener("click", function() {
+            if (Alloy.Globals.Player != null) if (Alloy.Globals.Player.playing) {
+                StopButton.title = "Play";
+                Alloy.Globals.Player.stop();
+            } else {
+                StopButton.title = "Stop";
+                Alloy.Globals.Player.play();
+            }
+        });
+        Alloy.Globals.StopButton = StopButton;
+    }
+    function IosCheck() {
+        Alloy.Globals.Alerts ? Alloy.Globals.Alerts = !1 : Alloy.Globals.Alerts = !0;
+    }
     function Search() {
-        alert("Search fired ");
-        AJSon = require("CoreFiles/AJSon");
-        var TextH = $.GetJson;
-        AJSon("piano", TextH);
+        Alloy.Globals.UIStuff = [ "TextH", "Label1", "Button1", "tableP", "AlertSwitch", "AlertLabel" ];
+        Alloy.Globals.UIStuff[0] = $.GetJson;
+        Alloy.Globals.UIStuff[0].text = " yo ";
+        Alloy.Globals.UIStuff[1] = $.Label1;
+        Alloy.Globals.UIStuff[2] = $.Search;
+        Alloy.Globals.UIStuff[3] = $.tableP;
+        Alloy.Globals.UIStuff[4] = $.Alerts;
+        Alloy.Globals.UIStuff[5] = $.AL;
+        $.tableP.visible = !0;
+        $.AL.visible = !1;
+        $.Alerts.visible = !1;
+        Alloy.Globals.Alerts && alert("Search fired ");
+        SCson = require("CoreFiles/SCson");
+        $.Label1.visible = !1;
+        $.Search.visible = !1;
+        SCson($.Label1.value);
+    }
+    function Back() {
+        Alloy.Globals.Alerts && alert("Fall Back ");
+        for (var i = 0; i < Alloy.Globals.UIStuff.length; i++) i != 3 ? Alloy.Globals.UIStuff[i].visible = !0 : Alloy.Globals.UIStuff[i].visible = !1;
     }
     function AJ(trackL, dR) {
         alert("In AJSon");
@@ -32,19 +77,25 @@ function Controller() {
     $.__views.index = A$(Ti.UI.createTabGroup({
         id: "index"
     }), "TabGroup", null);
-    $.__views.__alloyId2 = A$(Ti.UI.createWindow({
+    $.__views.Main = A$(Ti.UI.createWindow({
         backgroundColor: "#fff",
         title: "Tab 1",
-        id: "__alloyId2"
+        id: "Main"
     }), "Window", null);
+    OnLoad ? $.__views.Main.on("open", OnLoad) : __defers["$.__views.Main!open!OnLoad"] = !0;
+    $.__views.tableP = A$(Ti.UI.createTableView({
+        id: "tableP",
+        visible: "false"
+    }), "TableView", $.__views.Main);
+    $.__views.Main.add($.__views.tableP);
     $.__views.Search = A$(Ti.UI.createButton({
         title: "Search",
         top: "30",
         id: "Search"
-    }), "Button", $.__views.__alloyId2);
-    $.__views.__alloyId2.add($.__views.Search);
+    }), "Button", $.__views.Main);
+    $.__views.Main.add($.__views.Search);
     Search ? $.__views.Search.on("click", Search) : __defers["$.__views.Search!click!Search"] = !0;
-    $.__views.__alloyId3 = A$(Ti.UI.createLabel({
+    $.__views.AL = A$(Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
         color: "#000",
@@ -53,22 +104,38 @@ function Controller() {
             fontFamily: "Helvetica Neue"
         },
         textAlign: "center",
-        text: "I am Window 1",
-        id: "__alloyId3"
-    }), "Label", $.__views.__alloyId2);
-    $.__views.__alloyId2.add($.__views.__alloyId3);
+        text: "Alert Switch",
+        top: "80",
+        id: "AL"
+    }), "Label", $.__views.Main);
+    $.__views.Main.add($.__views.AL);
+    $.__views.Alerts = A$(Ti.UI.createSwitch({
+        id: "Alerts",
+        value: "false",
+        top: "120",
+        title: "Alert Switch"
+    }), "Switch", $.__views.Main);
+    $.__views.Main.add($.__views.Alerts);
+    IosCheck ? $.__views.Alerts.on("change", IosCheck) : __defers["$.__views.Alerts!change!IosCheck"] = !0;
+    $.__views.Label1 = A$(Ti.UI.createTextField({
+        id: "Label1",
+        width: "60",
+        hintText: " Search Here "
+    }), "TextField", $.__views.Main);
+    $.__views.Main.add($.__views.Label1);
     $.__views.__alloyId1 = A$(Ti.UI.createTab({
-        window: $.__views.__alloyId2,
+        window: $.__views.Main,
         title: "Tab 1",
         icon: "KS_nav_ui.png",
         id: "__alloyId1"
     }), "Tab", null);
     $.__views.index.addTab($.__views.__alloyId1);
-    $.__views.__alloyId5 = A$(Ti.UI.createWindow({
+    $.__views.__alloyId3 = A$(Ti.UI.createWindow({
         backgroundColor: "#fff",
         title: "Tab 2",
-        id: "__alloyId5"
+        id: "__alloyId3"
     }), "Window", null);
+    var __alloyId4 = [];
     $.__views.GetJson = A$(Ti.UI.createLabel({
         width: Ti.UI.SIZE,
         height: Ti.UI.SIZE,
@@ -80,30 +147,41 @@ function Controller() {
         textAlign: "center",
         text: "Waiting for JSON",
         id: "GetJson"
-    }), "Label", $.__views.__alloyId5);
-    $.__views.__alloyId5.add($.__views.GetJson);
-    $.__views.__alloyId4 = A$(Ti.UI.createTab({
-        window: $.__views.__alloyId5,
+    }), "Label", null);
+    __alloyId4.push($.__views.GetJson);
+    $.__views.scrollableView = A$(Ti.UI.createScrollableView({
+        views: __alloyId4,
+        id: "scrollableView",
+        showPagingControl: "true",
+        scrollingEnabled: "true",
+        width: "auto",
+        height: "auto"
+    }), "ScrollableView", $.__views.__alloyId3);
+    $.__views.__alloyId3.add($.__views.scrollableView);
+    $.__views.__alloyId2 = A$(Ti.UI.createTab({
+        window: $.__views.__alloyId3,
         title: "Tab 2",
         icon: "KS_nav_views.png",
-        id: "__alloyId4"
+        id: "__alloyId2"
     }), "Tab", null);
-    $.__views.index.addTab($.__views.__alloyId4);
-    $.__views.win = A$(Ti.UI.createWindow({
-        backgroundColor: "#fff",
-        id: "win"
+    $.__views.index.addTab($.__views.__alloyId2);
+    $.__views.scFlow = A$(Ti.UI.createWindow({
+        backgroundColor: "white",
+        id: "scFlow"
     }), "Window", null);
-    $.__views.__alloyId6 = A$(Ti.UI.createTab({
-        window: $.__views.win,
-        title: "Map",
-        id: "__alloyId6"
+    $.__views.__alloyId5 = A$(Ti.UI.createTab({
+        window: $.__views.scFlow,
+        title: "SC CoverFlow",
+        id: "__alloyId5"
     }), "Tab", null);
-    $.__views.index.addTab($.__views.__alloyId6);
+    $.__views.index.addTab($.__views.__alloyId5);
     $.addTopLevelView($.__views.index);
     exports.destroy = function() {};
     _.extend($, $.__views);
     $.index.open();
+    __defers["$.__views.Main!open!OnLoad"] && $.__views.Main.on("open", OnLoad);
     __defers["$.__views.Search!click!Search"] && $.__views.Search.on("click", Search);
+    __defers["$.__views.Alerts!change!IosCheck"] && $.__views.Alerts.on("change", IosCheck);
     _.extend($, exports);
 }
 

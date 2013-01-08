@@ -40,7 +40,7 @@ else
 JM = false ; 
 if(data[e.index].color != 'blue')
 {
-//	alert('hmm');
+//	alert('hmm'); data[e.index].permalink_url + '/'  + "/download.mp3" ;
 var Closer = data[e.index].permalink_url; 
 var Sounder = Closer + '/'  + "/download.mp3" ;
 }
