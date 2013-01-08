@@ -25,11 +25,13 @@ function Controller() {
             }
         });
         Alloy.Globals.StopButton = StopButton;
+        (Ti.Platform.osname == "iphone" || Ti.Platform.osname == "ipad") && Alloy.Globals.MainWin.setLeftNavButton(Alloy.Globals.InfoButton);
     }
     function IosCheck() {
         Alloy.Globals.Alerts ? Alloy.Globals.Alerts = !1 : Alloy.Globals.Alerts = !0;
     }
     function Search() {
+        (Ti.Platform.osname == "iphone" || Ti.Platform.osname == "ipad") && Alloy.Globals.MainWin.setLeftNavButton(Alloy.Globals.LeftButton);
         Alloy.Globals.UIStuff = [ "TextH", "Label1", "Button1", "tableP", "AlertSwitch", "AlertLabel" ];
         Alloy.Globals.UIStuff[0] = $.GetJson;
         Alloy.Globals.UIStuff[0].text = " yo ";
@@ -48,6 +50,7 @@ function Controller() {
         SCson($.Label1.value);
     }
     function Back() {
+        (Ti.Platform.osname == "iphone" || Ti.Platform.osname == "ipad") && Alloy.Globals.MainWin.setLeftNavButton(Alloy.Globals.InfoButton);
         Alloy.Globals.Alerts && alert("Fall Back ");
         for (var i = 0; i < Alloy.Globals.UIStuff.length; i++) i != 3 ? Alloy.Globals.UIStuff[i].visible = !0 : Alloy.Globals.UIStuff[i].visible = !1;
     }

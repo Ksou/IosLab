@@ -19,3 +19,4 @@ Alloy.Globals.InfoButton ;
 Alloy.Globals.scFlow ; 
 Alloy.Globals.Player ; 
 Alloy.Globals.StopButton ;
+Alloy.Globals.Played = false ; 

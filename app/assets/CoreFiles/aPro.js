@@ -45,18 +45,18 @@ Back();
 }
 	
 else{	
-	
+	var	Sounder;
 	var API = 'JM';
-	var tempString =  data[e.index].title;
- var	Sounder = 'http://storage-new.newjamendo.com/download/track/'+data[e.index].id+'/mp32';
+	var tempString =  data[e.index].id;
+  Sounder = 'http://storage-new.newjamendo.com/download/track/'+tempString+'/mp32';
 	if(data[e.index].name == null)
 	{
  API = ' SC' ; 		
-		Sounder = data[e.index].permalink_url + '/'  + "/download.mp3" ; 
+		Sounder = data[e.index].permalink_url   + "/download.mp3" ; 
 	}
 	
 	
-	alert('Playing ' + Sounder + API ) ; 	
+	alert('Playing ' + Sounder  ) ; 	
 if( Ti.Platform.osname == 'android'|| Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad' ){
 Songer(Sounder)  ; 	
 }
@@ -82,12 +82,14 @@ Songer(Sounder)  ;
 }
 
 function Songer(Song){
-	
-		var	RowPlay =
-		 Ti.Media.createAudioPlayer({url : Song});
+
+//var tempBool = Alloy.Globals.Played ; 
+//alert(tempBool) ;
+
+		var	RowPlay = 		 Ti.Media.createAudioPlayer({url : Song});
 			RowPlay.play();
 Alloy.Globals.Player = RowPlay ; 
-
+//Alloy.Globals.Played = 1 ; 
 //Alloy.Globals.Player 
 		if(Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad' ){
 	Alloy.Globals.MainWin.setRightNavButton(Alloy.Globals.StopButton);}

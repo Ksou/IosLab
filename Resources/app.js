@@ -18,4 +18,6 @@ Alloy.Globals.Player;
 
 Alloy.Globals.StopButton;
 
+Alloy.Globals.Played = !1;
+
 Alloy.createController("index");
